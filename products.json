@@ -1,0 +1,16 @@
+[
+  {
+    "id": "survival-bracelet",
+    "name": "Survival Bracelet",
+    "price": 19.00,
+    "description": "Classic cobra weave. 3–4m of deployable 550 paracord. Stainless buckle.",
+    "url": "https://philroy.com.au/shop.html"
+  },
+  {
+    "id": "grab-handle",
+    "name": "Grab Handle",
+    "price": 29.00,
+    "description": "Heavy duty woven paracord grab handle. Built for utes, 4WDs and hard environments.",
+    "url": "https://philroy.com.au/shop.html"
+  }
+]

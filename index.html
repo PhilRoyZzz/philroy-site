@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Philroy — Handcrafted Paracord Gear</title>
+  <meta name="description" content="Premium handcrafted 550 paracord gear made in Queensland. Built tough, ships Australia wide.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪢</text></svg>">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://app.snipcart.com">
+  <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.3.3/default/snipcart.css">
+  <style>
+    /* ── HOME SPECIFIC ── */
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 88vh;
+      border-bottom: 1px solid var(--line);
+    }
+    .hero-left {
+      padding: 5rem 3rem 4rem 2.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border-right: 1px solid var(--line);
+    }
+    .hero-eyebrow {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--olive2);
+      font-weight: 600;
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      opacity: 0;
+      animation: fadeUp 0.6s 0.1s forwards;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 32px; height: 1px;
+      background: var(--olive);
+    }
+    .hero h1 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(3.8rem, 7vw, 6.5rem);
+      font-weight: 800;
+      line-height: 0.9;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      margin-bottom: 1.75rem;
+      opacity: 0;
+      animation: fadeUp 0.65s 0.2s forwards;
+    }
+    .hero h1 em { color: var(--accent); font-style: normal; display: block; }
+    .hero-sub {
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 1.75;
+      max-width: 380px;
+      margin-bottom: 2.5rem;
+      font-weight: 400;
+      opacity: 0;
+      animation: fadeUp 0.65s 0.3s forwards;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      opacity: 0;
+      animation: fadeUp 0.65s 0.4s forwards;
+    }
+    .hero-right {
+      background: var(--bg2);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-img-wrap {
+      width: 100%; height: 70%;
+      background: var(--bg3);
+      border: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      top: 2rem; left: 2rem; right: 2rem;
+      overflow: hidden;
+    }
+    .hero-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+    .hero-ph {
+      display: flex; flex-direction: column;
+      align-items: center; gap: 6px;
+    }
+    .hero-ph span {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--line);
+      font-weight: 600;
+    }
+    .hero-stats {
+      display: flex;
+      gap: 2rem;
+      margin-top: auto;
+      padding-top: 78%;
+      opacity: 0;
+      animation: fadeUp 0.65s 0.5s forwards;
+    }
+    .stat { border-left: 2px solid var(--olive); padding-left: 0.75rem; }
+    .stat-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.68rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      margin-top: 2px;
+    }
+    .hero-corner {
+      position: absolute;
+      top: 1rem; right: 1.25rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--line);
+      font-weight: 600;
+    }
+
+    /* ── MARQUEE ── */
+    .marquee-wrap {
+      overflow: hidden;
+      border-bottom: 1px solid var(--line);
+      padding: 0.75rem 0;
+      background: var(--bg2);
+    }
+    .marquee-track {
+      display: flex;
+      gap: 0;
+      white-space: nowrap;
+      animation: marquee 22s linear infinite;
+    }
+    .marquee-item {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 600;
+      padding: 0 2.5rem;
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+    }
+    .marquee-item::after {
+      content: '·';
+      color: var(--olive);
+    }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* ── TRUST STRIP ── */
+    .trust-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-bottom: 1px solid var(--line);
+    }
+    .trust-item {
+      padding: 2rem 2.5rem;
+      border-right: 1px solid var(--line);
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    .trust-item:last-child { border-right: none; }
+    .trust-icon {
+      width: 38px; height: 38px;
+      flex-shrink: 0;
+      border: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .trust-icon svg { width: 16px; height: 16px; stroke: var(--olive2); fill: none; stroke-width: 1.5; }
+    .trust-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 0.3rem;
+    }
+    .trust-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.6; }
+
+    /* ── FEATURED PRODUCTS ── */
+    .featured-header {
+      padding: 3rem 2.5rem 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 0;
+    }
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-left: 1px solid var(--line);
+      border-top: 1px solid var(--line);
+      margin-top: 2rem;
+    }
+
+    /* ── ABOUT STRIP ── */
+    .about-strip {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-top: 1px solid var(--line);
+      min-height: 380px;
+    }
+    .about-left {
+      padding: 4rem 2.5rem;
+      border-right: 1px solid var(--line);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .about-left p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.8;
+      margin: 1rem 0 2rem;
+      max-width: 460px;
+    }
+    .about-right {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    .about-stat {
+      padding: 2.5rem;
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+    .about-stat:nth-child(even) { border-right: none; }
+    .about-stat:nth-child(3), .about-stat:nth-child(4) { border-bottom: none; }
+    .about-stat-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 3.5rem;
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1;
+      margin-bottom: 0.25rem;
+    }
+    .about-stat-label {
+      font-size: 0.78rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-left { padding: 3rem 1.25rem; }
+      .hero-right { display: none; }
+      .trust-strip { grid-template-columns: 1fr; }
+      .trust-item { border-right: none; border-bottom: 1px solid var(--line); }
+      .products-grid { grid-template-columns: 1fr; }
+      .featured-header { padding: 2rem 1.25rem 0; }
+      .about-strip { grid-template-columns: 1fr; }
+      .about-left { padding: 2.5rem 1.25rem; }
+      .about-right { border-top: 1px solid var(--line); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="topbar">Free shipping on orders over $75 · Handcrafted 550 paracord · Ships Australia wide</div>
+
+<nav>
+  <a href="index.html" class="logo">Phil<span>roy</span></a>
+  <div class="nav-links">
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="shop.html" class="nav-link">Shop</a>
+    <a href="about.html" class="nav-link">About</a>
+    <a href="contact.html" class="nav-link">Contact</a>
+    <button class="cart-btn snipcart-checkout">
+      Cart&nbsp;<span class="snipcart-items-count cart-count">0</span>
+    </button>
+  </div>
+  <button class="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu">
+  <a href="index.html" class="nav-link">Home</a>
+  <a href="shop.html" class="nav-link">Shop</a>
+  <a href="about.html" class="nav-link">About</a>
+  <a href="contact.html" class="nav-link">Contact</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Handcrafted in Queensland</div>
+    <h1>Built to<em>Outlast Everything.</em></h1>
+    <p class="hero-sub">Premium 550 paracord gear made by hand in North Ipswich. Trusted by workers, outdoorsmen, and anyone who needs kit that doesn't quit.</p>
+    <div class="hero-actions">
+      <a href="shop.html" class="btn-primary">Shop the Range</a>
+      <a href="about.html" class="btn-outline">Our Story</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-corner">philroy.com.au</div>
+    <div class="hero-img-wrap">
+      <!-- Replace src with your product photo -->
+      <div class="hero-ph">
+        <span>Add hero product photo</span>
+        <span style="color:var(--line);font-size:0.6rem;font-family:'Barlow Condensed',sans-serif;letter-spacing:0.1em;text-transform:uppercase;">1200 × 900px recommended</span>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num" data-target="550" data-suffix="">0</div>
+        <div class="stat-label">lb rated cord</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num" data-target="100" data-suffix="%">0%</div>
+        <div class="stat-label">handmade</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">AUS</div>
+        <div class="stat-label">wide shipping</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item">Military Grade 550 Paracord</span>
+    <span class="marquee-item">Handcrafted in Queensland</span>
+    <span class="marquee-item">Ships Australia Wide</span>
+    <span class="marquee-item">250kg Tensile Strength</span>
+    <span class="marquee-item">Made to Order</span>
+    <span class="marquee-item">Pay with Stripe or PayPal</span>
+    <span class="marquee-item">Military Grade 550 Paracord</span>
+    <span class="marquee-item">Handcrafted in Queensland</span>
+    <span class="marquee-item">Ships Australia Wide</span>
+    <span class="marquee-item">250kg Tensile Strength</span>
+    <span class="marquee-item">Made to Order</span>
+    <span class="marquee-item">Pay with Stripe or PayPal</span>
+  </div>
+</div>
+
+<!-- TRUST -->
+<section class="trust-strip">
+  <div class="trust-item reveal delay-1">
+    <div class="trust-icon">
+      <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    </div>
+    <div>
+      <div class="trust-label">Military spec cord</div>
+      <div class="trust-desc">Genuine Type III 550 paracord rated to 250kg. Not the cheap knockoff stuff flooding marketplaces.</div>
+    </div>
+  </div>
+  <div class="trust-item reveal delay-2">
+    <div class="trust-icon">
+      <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+    </div>
+    <div>
+      <div class="trust-label">Tied by hand</div>
+      <div class="trust-desc">Every knot tied and inspected before it ships. No machines. Small batch, made to order.</div>
+    </div>
+  </div>
+  <div class="trust-item reveal delay-3">
+    <div class="trust-icon">
+      <svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 4v4h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+    </div>
+    <div>
+      <div class="trust-label">Ships Australia wide</div>
+      <div class="trust-desc">Flat rate tracked shipping on every order. Packed properly so it arrives in perfect condition.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED PRODUCTS -->
+<section>
+  <div class="featured-header reveal">
+    <div>
+      <div class="section-tag">The Range</div>
+      <div class="section-title">Featured Products</div>
+    </div>
+    <a href="shop.html" class="btn-outline" style="font-size:0.72rem;padding:0.6rem 1.25rem;">View All</a>
+  </div>
+  <div class="products-grid">
+
+    <div class="product-card reveal delay-1">
+      <div class="product-img">
+        <div class="badge">Bestseller</div>
+        <div class="product-img-ph"><span>Add photo</span></div>
+      </div>
+      <div class="product-body">
+        <div class="product-cat">Wristwear</div>
+        <div class="product-name">Survival Bracelet</div>
+        <div class="product-desc">Classic cobra weave. 3–4m of deployable 550 paracord on your wrist. Stainless buckle. Multiple colours.</div>
+        <div class="product-footer">
+          <div class="product-price">$TBA</div>
+          <button class="add-btn snipcart-add-item"
+            data-item-id="survival-bracelet"
+            data-item-price="19.00"
+            data-item-url="/products.json"
+            data-item-name="Survival Bracelet"
+            data-item-description="Classic cobra weave. 3–4m of deployable 550 paracord. Stainless buckle."
+            onclick="showToast('Added to cart!')">
+            Add to Cart
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card reveal delay-2">
+      <div class="product-img">
+        <div class="badge new">New</div>
+        <div class="product-img-ph"><span>Add photo</span></div>
+      </div>
+      <div class="product-body">
+        <div class="product-cat">Utility</div>
+        <div class="product-name">Grab Handle</div>
+        <div class="product-desc">Heavy duty woven paracord grab handle. Built for utes, 4WDs, trailers, and hard environments. Won't rot, won't snap.</div>
+        <div class="product-footer">
+          <div class="product-price">$TBA</div>
+          <button class="add-btn snipcart-add-item"
+            data-item-id="grab-handle"
+            data-item-price="29.00"
+            data-item-url="/products.json"
+            data-item-name="Grab Handle"
+            data-item-description="Heavy duty woven paracord grab handle."
+            onclick="showToast('Added to cart!')">
+            Add to Cart
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card" style="cursor:default;background:var(--bg2)">
+      <div class="product-img" style="background:var(--bg)">
+        <div class="product-img-ph"><span style="color:var(--line)">More dropping soon</span></div>
+      </div>
+      <div class="product-body">
+        <div class="product-cat" style="color:var(--line)">Coming soon</div>
+        <div class="product-name" style="color:var(--muted)">More Products</div>
+        <div class="product-desc">New gear dropping as it's made. Follow on TikTok to see them built in real time before they hit the store.</div>
+        <div class="product-footer">
+          <div class="product-price" style="color:var(--line)">—</div>
+          <a href="contact.html" class="add-btn">Notify Me</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ABOUT STRIP -->
+<section class="about-strip">
+  <div class="about-left reveal-left">
+    <div class="section-tag">Who We Are</div>
+    <div class="section-title">Made in Ipswich.<br>Built to Last.</div>
+    <p>Every piece is handcrafted in North Ipswich, Queensland. No factory, no machines — just quality cord and time spent doing it right. Small batch, made to order, shipped to your door.</p>
+    <a href="about.html" class="btn-primary">Read Our Story</a>
+  </div>
+  <div class="about-right">
+    <div class="about-stat reveal delay-1">
+      <div class="about-stat-num" data-target="550" data-suffix="">0</div>
+      <div class="about-stat-label">lb tensile strength</div>
+    </div>
+    <div class="about-stat reveal delay-2">
+      <div class="about-stat-num" data-target="100" data-suffix="%">0%</div>
+      <div class="about-stat-label">handmade</div>
+    </div>
+    <div class="about-stat reveal delay-3">
+      <div class="about-stat-num">QLD</div>
+      <div class="about-stat-label">made in Queensland</div>
+    </div>
+    <div class="about-stat reveal delay-4">
+      <div class="about-stat-num">AUS</div>
+      <div class="about-stat-label">wide shipping</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-brand">
+    <div class="logo">Phil<span>roy</span></div>
+    <p>Premium handcrafted 550 paracord gear, made by hand in North Ipswich, Queensland. Ships Australia wide.</p>
+  </div>
+  <div class="footer-col">
+    <h4>Shop</h4>
+    <a href="shop.html">All Products</a>
+    <a href="shop.html#bracelets">Bracelets</a>
+    <a href="shop.html#handles">Grab Handles</a>
+  </div>
+  <div class="footer-col">
+    <h4>Info</h4>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="contact.html">Shipping Policy</a>
+  </div>
+</footer>
+<div class="footer-bottom">
+  <span>ABN 13 305 181 990 · Sole Trader · North Ipswich QLD</span>
+  <span>© 2026 Philroy. All rights reserved.</span>
+</div>
+
+<div class="toast"></div>
+
+<div id="snipcart" data-api-key="YOUR_SNIPCART_PUBLIC_KEY" hidden></div>
+<script async src="https://cdn.snipcart.com/themes/v3.3.3/default/snipcart.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

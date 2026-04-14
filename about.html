@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — Philroy Paracord</title>
+  <meta name="description" content="Handcrafted paracord gear made in North Ipswich, Queensland. The story behind Philroy.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://app.snipcart.com">
+  <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.3.3/default/snipcart.css">
+  <style>
+    .page-hero {
+      padding: 5rem 2.5rem 4rem;
+      border-bottom: 1px solid var(--line);
+      max-width: 800px;
+    }
+    .page-hero h1 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      line-height: 0.92;
+      margin-bottom: 1.5rem;
+    }
+    .page-hero h1 em { color: var(--accent); font-style: normal; display: block; }
+    .page-hero p {
+      font-size: 1rem;
+      color: var(--muted);
+      line-height: 1.85;
+      max-width: 560px;
+      font-weight: 400;
+    }
+
+    .story-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-top: 1px solid var(--line);
+    }
+    .story-img {
+      background: var(--bg2);
+      min-height: 460px;
+      border-right: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .story-img span {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--line);
+      font-weight: 600;
+    }
+    .story-content {
+      padding: 4rem 3rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .story-content p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.85;
+      margin-bottom: 1.25rem;
+      font-weight: 400;
+    }
+    .story-content p strong {
+      color: var(--white);
+      font-weight: 500;
+    }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid var(--line);
+      border-left: 1px solid var(--line);
+    }
+    .value-item {
+      padding: 2.5rem;
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .value-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 3rem;
+      font-weight: 800;
+      color: var(--line);
+      line-height: 1;
+      margin-bottom: 0.75rem;
+    }
+    .value-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 0.5rem;
+    }
+    .value-desc {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .cta-strip {
+      padding: 5rem 2.5rem;
+      text-align: center;
+      border-top: 1px solid var(--line);
+    }
+    .cta-strip h2 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      margin-bottom: 1rem;
+    }
+    .cta-strip h2 em { color: var(--accent); font-style: normal; }
+    .cta-strip p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 2rem;
+      max-width: 440px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.7;
+    }
+    .cta-actions { display: flex; gap: 1rem; justify-content: center; }
+
+    @media (max-width: 900px) {
+      .page-hero { padding: 3rem 1.25rem; }
+      .story-grid { grid-template-columns: 1fr; }
+      .story-img { min-height: 220px; border-right: none; border-bottom: 1px solid var(--line); }
+      .story-content { padding: 2.5rem 1.25rem; }
+      .values-grid { grid-template-columns: 1fr; }
+      .cta-strip { padding: 3rem 1.25rem; }
+      .cta-actions { flex-direction: column; align-items: center; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="topbar">Free shipping on orders over $75 · Handcrafted 550 paracord · Ships Australia wide</div>
+
+<nav>
+  <a href="index.html" class="logo">Phil<span>roy</span></a>
+  <div class="nav-links">
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="shop.html" class="nav-link">Shop</a>
+    <a href="about.html" class="nav-link active">About</a>
+    <a href="contact.html" class="nav-link">Contact</a>
+    <button class="cart-btn snipcart-checkout">
+      Cart&nbsp;<span class="snipcart-items-count cart-count">0</span>
+    </button>
+  </div>
+  <button class="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-menu">
+  <a href="index.html" class="nav-link">Home</a>
+  <a href="shop.html" class="nav-link">Shop</a>
+  <a href="about.html" class="nav-link">About</a>
+  <a href="contact.html" class="nav-link">Contact</a>
+</div>
+
+<div class="page-hero">
+  <div class="section-tag reveal">Our Story</div>
+  <h1 class="reveal delay-1">Built by Hand.<em>Built to Last.</em></h1>
+  <p class="reveal delay-2">Philroy started in North Ipswich, Queensland — because quality handmade gear shouldn't cost a fortune, and most of what's out there isn't worth the cord it's made from.</p>
+</div>
+
+<section class="story-grid">
+  <div class="story-img reveal-left">
+    <span>Workshop photo</span>
+    <span style="color:var(--line);font-size:0.6rem">Add a photo of you making the gear</span>
+  </div>
+  <div class="story-content reveal-right">
+    <div class="section-tag" style="margin-bottom:0.75rem">The Beginning</div>
+    <p><strong>Every piece starts with genuine Type III 550 paracord.</strong> The same cord rated to 250kg of tensile strength — the real stuff, not the cheap imports that snap under pressure.</p>
+    <p>Made to order in small batches from North Ipswich. No warehouse, no stock room — when you order, it gets made for you. That's how we keep quality where it needs to be.</p>
+    <p><strong>Registered Australian business.</strong> ABN 13 305 181 990. When you buy from Philroy, you're buying from a real person who takes pride in what they make, not a faceless dropshipping operation.</p>
+    <a href="shop.html" class="btn-primary" style="align-self:flex-start;margin-top:0.5rem">Shop the Range</a>
+  </div>
+</section>
+
+<section>
+  <div style="padding:3rem 2.5rem 0;" class="reveal">
+    <div class="section-tag">What We Stand For</div>
+    <div class="section-title">Our Values</div>
+  </div>
+  <div class="values-grid" style="margin-top:2rem">
+    <div class="value-item reveal delay-1">
+      <div class="value-num">01</div>
+      <div class="value-title">No shortcuts</div>
+      <div class="value-desc">Every knot is tied by hand and checked before it goes in the post. If it's not right, it doesn't ship. Simple as that.</div>
+    </div>
+    <div class="value-item reveal delay-2">
+      <div class="value-num">02</div>
+      <div class="value-title">Real materials</div>
+      <div class="value-desc">Genuine 550 paracord only. Stainless hardware. No cheap substitutes to pad the margin. You can feel the difference.</div>
+    </div>
+    <div class="value-item reveal delay-3">
+      <div class="value-num">03</div>
+      <div class="value-title">Fair pricing</div>
+      <div class="value-desc">Handmade doesn't have to mean overpriced. Honest prices for quality gear, with fast flat-rate shipping Australia wide.</div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-strip reveal">
+  <h2>Ready to grab <em>something?</em></h2>
+  <p>Head to the shop and pick something up. Made to order, ships fast, built to last.</p>
+  <div class="cta-actions">
+    <a href="shop.html" class="btn-primary">Shop Now</a>
+    <a href="contact.html" class="btn-outline">Get in Touch</a>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-brand">
+    <div class="logo">Phil<span>roy</span></div>
+    <p>Premium handcrafted 550 paracord gear, made by hand in North Ipswich, Queensland. Ships Australia wide.</p>
+  </div>
+  <div class="footer-col">
+    <h4>Shop</h4>
+    <a href="shop.html">All Products</a>
+    <a href="shop.html#bracelets">Bracelets</a>
+    <a href="shop.html#handles">Grab Handles</a>
+  </div>
+  <div class="footer-col">
+    <h4>Info</h4>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="contact.html">Shipping Policy</a>
+  </div>
+</footer>
+<div class="footer-bottom">
+  <span>ABN 13 305 181 990 · Sole Trader · North Ipswich QLD</span>
+  <span>© 2026 Philroy. All rights reserved.</span>
+</div>
+
+<div id="snipcart" data-api-key="YOUR_SNIPCART_PUBLIC_KEY" hidden></div>
+<script async src="https://cdn.snipcart.com/themes/v3.3.3/default/snipcart.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
