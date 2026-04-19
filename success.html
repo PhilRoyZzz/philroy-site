@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Confirmed &mdash; Philroy</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .success-page{min-height:70vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:4rem 2rem}
+    .success-icon{font-size:3rem;margin-bottom:1.5rem}
+    .success-page h1{font-family:'Barlow Condensed',sans-serif;font-size:clamp(2.5rem,5vw,4rem);font-weight:800;text-transform:uppercase;letter-spacing:.03em;margin-bottom:.75rem}
+    .success-page h1 em{color:var(--accent);font-style:normal}
+    .success-page p{color:var(--muted);max-width:420px;line-height:1.7;margin-bottom:2rem}
+    .success-actions{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center}
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="index.html" class="logo">Phil<span>roy</span></a>
+    <div class="nav-links">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="shop.html" class="nav-link">Shop</a>
+      <a href="about.html" class="nav-link">About</a>
+      <a href="contact.html" class="nav-link">Contact</a>
+    </div>
+  </nav>
+  <div class="success-page">
+    <div class="success-icon">&#10003;</div>
+    <h1>Order<em>Confirmed.</em></h1>
+    <p>Your order is locked in. You&apos;ll get a receipt to your email. We&apos;ll have it built and shipped ASAP &mdash; any questions hit <a href="mailto:hello@philroy.com.au" style="color:var(--accent)">hello@philroy.com.au</a></p>
+    <div class="success-actions">
+      <a href="shop.html" class="btn-primary">Keep Shopping</a>
+      <a href="index.html" class="btn-outline">Back to Home</a>
+    </div>
+  </div>
+  <footer class="site-footer"><div class="footer-brand"><div class="logo">Phil<span>roy</span></div></div></footer>
+  <div class="footer-bottom"><span>ABN 13 305 181 990 &middot; Sole Trader &middot; North Ipswich QLD</span><span>&copy; 2026 Philroy. All rights reserved.</span></div>
+  <script src="js/main.js"></script>
+  <script>localStorage.removeItem('philroy-cart');</script>
+</body>
+</html>

@@ -3,270 +3,156 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shop — Philroy Paracord</title>
+  <title>Shop &mdash; Philroy Paracord</title>
   <meta name="description" content="Shop handcrafted 550 paracord gear. Survival bracelets, grab handles and more. Ships Australia wide.">
   <link rel="stylesheet" href="css/style.css">
-  <link rel="preconnect" href="https://app.snipcart.com">
-  <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.3.3/default/snipcart.css">
   <style>
-    .page-hero {
-      padding: 4rem 2.5rem 3rem;
-      border-bottom: 1px solid var(--line);
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-    }
-    .page-hero h1 {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: clamp(3rem, 6vw, 5rem);
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.03em;
-      line-height: 0.92;
-    }
-    .page-hero h1 em { color: var(--accent); font-style: normal; display: block; }
-    .product-count {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.75rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--muted);
-      font-weight: 600;
-    }
-
-    .filter-bar {
-      display: flex;
-      gap: 0;
-      border-bottom: 1px solid var(--line);
-      overflow-x: auto;
-    }
-    .filter-btn {
-      background: none;
-      border: none;
-      border-right: 1px solid var(--line);
-      color: var(--muted);
-      cursor: pointer;
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.72rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      font-weight: 600;
-      padding: 0.85rem 1.75rem;
-      transition: all 0.15s;
-      white-space: nowrap;
-    }
-    .filter-btn:hover, .filter-btn.active {
-      background: var(--bg2);
-      color: var(--white);
-    }
-    .filter-btn.active {
-      border-bottom: 2px solid var(--accent);
-    }
-
-    .shop-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      border-left: 1px solid var(--line);
-    }
-
-    /* PAYPAL SECTION */
-    .paypal-note {
-      border-top: 1px solid var(--line);
-      padding: 2.5rem;
-      display: flex;
-      align-items: flex-start;
-      gap: 2rem;
-      background: var(--bg2);
-    }
-    .paypal-note-text h3 {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 1.1rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      margin-bottom: 0.4rem;
-    }
-    .paypal-note-text p {
-      font-size: 0.82rem;
-      color: var(--muted);
-      line-height: 1.6;
-      max-width: 480px;
-    }
-    .paypal-btn-wrap { margin-top: 1rem; }
-
-    @media (max-width: 900px) {
-      .page-hero { padding: 2.5rem 1.25rem; flex-direction: column; gap: 1rem; align-items: flex-start; }
-      .shop-grid { grid-template-columns: 1fr; }
-    }
+    .page-hero{padding:4rem 2.5rem 3rem;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:flex-end}
+    .page-hero h1{font-family:'Barlow Condensed',sans-serif;font-size:clamp(3rem,6vw,5rem);font-weight:800;text-transform:uppercase;letter-spacing:.03em;line-height:.92}
+    .page-hero h1 em{color:var(--accent);font-style:normal;display:block}
+    .product-count{font-family:'Barlow Condensed',sans-serif;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:600}
+    .filter-bar{display:flex;border-bottom:1px solid var(--line);overflow-x:auto}
+    .filter-btn{background:none;border:none;border-right:1px solid var(--line);color:var(--muted);cursor:pointer;font-family:'Barlow Condensed',sans-serif;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;font-weight:600;padding:.85rem 1.75rem;transition:all .15s;white-space:nowrap}
+    .filter-btn:hover,.filter-btn.active{background:var(--bg2);color:var(--white)}
+    .filter-btn.active{border-bottom:2px solid var(--accent)}
+    .shop-grid{display:grid;grid-template-columns:repeat(3,1fr);border-left:1px solid var(--line)}
+    #cart-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:1000}
+    #cart-overlay.open{display:block}
+    #cart-drawer{position:fixed;top:0;right:0;bottom:0;width:min(420px,100vw);background:var(--bg2);border-left:1px solid var(--line);z-index:1001;display:flex;flex-direction:column;transform:translateX(100%);transition:transform .28s ease}
+    #cart-drawer.open{transform:translateX(0)}
+    .cart-header{display:flex;justify-content:space-between;align-items:center;padding:1.25rem 1.5rem;border-bottom:1px solid var(--line)}
+    .cart-title{font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase}
+    .cart-close{background:none;border:none;color:var(--muted);font-size:1.1rem;cursor:pointer;padding:.25rem}
+    .cart-close:hover{color:var(--white)}
+    .cart-body{flex:1;overflow-y:auto;padding:1rem 1.5rem}
+    .cart-empty{text-align:center;padding:3rem 1rem;color:var(--muted)}
+    .cart-empty p{margin-bottom:1.25rem}
+    .cart-item{display:flex;justify-content:space-between;align-items:center;padding:.9rem 0;border-bottom:1px solid var(--line);gap:1rem}
+    .cart-item-name{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.95rem;text-transform:uppercase;letter-spacing:.05em}
+    .cart-item-price{font-size:.82rem;color:var(--accent);margin-top:.2rem}
+    .cart-item-controls{display:flex;align-items:center;gap:.5rem;flex-shrink:0}
+    .cart-item-controls button{background:var(--bg);border:1px solid var(--line);color:var(--white);width:28px;height:28px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1rem}
+    .cart-item-controls button:hover{border-color:var(--accent);color:var(--accent)}
+    .cart-remove{color:var(--muted)!important;font-size:.75rem!important}
+    .cart-item-controls span{font-size:.9rem;min-width:20px;text-align:center}
+    .cart-footer{padding:1.25rem 1.5rem;border-top:1px solid var(--line)}
+    .cart-total{font-family:'Barlow Condensed',sans-serif;font-size:1.1rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:1rem}
+    .cart-total strong{color:var(--accent)}
+    .checkout-fields{display:flex;flex-direction:column;gap:.6rem;margin-bottom:1rem}
+    .checkout-fields input{background:var(--bg);border:1px solid var(--line);color:var(--white);padding:.65rem .9rem;font-size:.82rem;width:100%;outline:none}
+    .checkout-fields input:focus{border-color:var(--accent)}
+    .checkout-fields input::placeholder{color:var(--muted)}
+    .full-width{width:100%;justify-content:center}
+    #checkout-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:2000;align-items:center;justify-content:center;padding:1rem}
+    #checkout-modal.open{display:flex}
+    .checkout-inner{background:var(--bg2);border:1px solid var(--line);width:100%;max-width:480px;max-height:90vh;overflow-y:auto;padding:1.75rem}
+    .checkout-modal-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+    .checkout-modal-header button{background:none;border:none;color:var(--muted);cursor:pointer;font-size:1rem}
+    .checkout-modal-header button:hover{color:var(--white)}
+    .payment-loading{color:var(--muted);font-size:.85rem;padding:2rem 0;text-align:center}
+    #payment-element{margin-bottom:1.25rem}
+    .checkout-error{color:#e05c5c;font-size:.82rem;margin-bottom:.75rem;min-height:1.2em}
+    #checkout-confirm{margin-bottom:.75rem}
+    #checkout-confirm:disabled{opacity:.5;cursor:not-allowed}
+    .checkout-secure{font-size:.72rem;color:var(--muted);text-align:center}
+    @media(max-width:900px){.page-hero{padding:2.5rem 1.25rem;flex-direction:column;gap:1rem;align-items:flex-start}.shop-grid{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
-
-<div class="topbar">Free shipping on orders over $75 · Handcrafted 550 paracord · Ships Australia wide</div>
-
-<nav>
-  <a href="index.html" class="logo">Phil<span>roy</span></a>
-  <div class="nav-links">
+  <div class="topbar">Free shipping on orders over $75 &middot; Handcrafted 550 paracord &middot; Ships Australia wide</div>
+  <nav>
+    <a href="index.html" class="logo">Phil<span>roy</span></a>
+    <div class="nav-links">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="shop.html" class="nav-link active">Shop</a>
+      <a href="about.html" class="nav-link">About</a>
+      <a href="contact.html" class="nav-link">Contact</a>
+      <button class="cart-btn" onclick="openCart()">Cart&nbsp;<span class="cart-count">0</span></button>
+    </div>
+    <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </nav>
+  <div class="mobile-menu">
     <a href="index.html" class="nav-link">Home</a>
-    <a href="shop.html" class="nav-link active">Shop</a>
+    <a href="shop.html" class="nav-link">Shop</a>
     <a href="about.html" class="nav-link">About</a>
     <a href="contact.html" class="nav-link">Contact</a>
-    <button class="cart-btn snipcart-checkout">
-      Cart&nbsp;<span class="snipcart-items-count cart-count">0</span>
-    </button>
   </div>
-  <button class="hamburger" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
-<div class="mobile-menu">
-  <a href="index.html" class="nav-link">Home</a>
-  <a href="shop.html" class="nav-link">Shop</a>
-  <a href="about.html" class="nav-link">About</a>
-  <a href="contact.html" class="nav-link">Contact</a>
-</div>
-
-<div class="page-hero">
-  <div>
-    <div class="section-tag">The Range</div>
-    <h1>Shop All<em>Products.</em></h1>
-  </div>
-  <div class="product-count">2 Products</div>
-</div>
-
-<div class="filter-bar">
-  <button class="filter-btn active" onclick="filterProducts('all', this)">All</button>
-  <button class="filter-btn" onclick="filterProducts('wristwear', this)" id="bracelets">Wristwear</button>
-  <button class="filter-btn" onclick="filterProducts('utility', this)" id="handles">Utility</button>
-</div>
-
-<div class="shop-grid" id="shop-grid">
-
-  <div class="product-card reveal delay-1" data-cat="wristwear">
-    <div class="product-img">
-      <div class="badge">Bestseller</div>
-      <div class="product-img-ph"><span>Add product photo</span></div>
+  <div class="page-hero">
+    <div>
+      <div class="section-tag">The Range</div>
+      <h1>Shop All<em>Products.</em></h1>
     </div>
-    <div class="product-body">
-      <div class="product-cat">Wristwear</div>
-      <div class="product-name">Survival Bracelet</div>
-      <div class="product-desc">Classic cobra weave. 3–4 metres of deployable 550 paracord packed into a wrist-worn tool. Stainless steel buckle. Available in multiple colours — note your colour preference at checkout.</div>
-      <div class="product-footer">
-        <div class="product-price">$TBA</div>
-        <button class="add-btn snipcart-add-item"
-          data-item-id="survival-bracelet"
-          data-item-price="19.00"
-          data-item-url="/products.json"
-          data-item-name="Survival Bracelet"
-          data-item-description="Classic cobra weave. 3–4m of deployable 550 paracord. Stainless buckle."
-          onclick="showToast('Added to cart!')">
-          Add to Cart
-        </button>
+    <div class="product-count">2 Products</div>
+  </div>
+  <div class="filter-bar">
+    <button class="filter-btn active" onclick="filterProducts('all',this)">All</button>
+    <button class="filter-btn" onclick="filterProducts('wristwear',this)">Wristwear</button>
+    <button class="filter-btn" onclick="filterProducts('utility',this)">Utility</button>
+  </div>
+  <div class="shop-grid" id="shop-grid">
+    <div class="product-card reveal delay-1" data-cat="wristwear">
+      <div class="product-img">
+        <div class="badge">Bestseller</div>
+        <div class="product-img-ph"><span>Add product photo</span></div>
+      </div>
+      <div class="product-body">
+        <div class="product-cat">Wristwear</div>
+        <div class="product-name">Survival Bracelet</div>
+        <div class="product-desc">Classic cobra weave. 3&ndash;4 metres of deployable 550 paracord packed into a wrist-worn tool. Stainless steel buckle. Note your colour preference at checkout.</div>
+        <div class="product-footer">
+          <div class="product-price">$19.00</div>
+          <button class="add-btn" onclick="addToCart('survival-bracelet')">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+    <div class="product-card reveal delay-2" data-cat="utility">
+      <div class="product-img">
+        <div class="badge new">New</div>
+        <div class="product-img-ph"><span>Add product photo</span></div>
+      </div>
+      <div class="product-body">
+        <div class="product-cat">Utility</div>
+        <div class="product-name">Grab Handle</div>
+        <div class="product-desc">Heavy duty woven paracord grab handle. Built for utes, 4WDs, trailers and hard work. Stronger than rope, won&apos;t rot or snap. Contact us for custom lengths.</div>
+        <div class="product-footer">
+          <div class="product-price">$29.00</div>
+          <button class="add-btn" onclick="addToCart('grab-handle')">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+    <div class="product-card" style="cursor:default;background:var(--bg2)">
+      <div class="product-img" style="background:var(--bg)">
+        <div class="product-img-ph"><span style="color:var(--line)">More dropping soon</span></div>
+      </div>
+      <div class="product-body">
+        <div class="product-cat" style="color:var(--line)">Coming soon</div>
+        <div class="product-name" style="color:var(--muted)">More Products</div>
+        <div class="product-desc">New gear always in progress. Follow on TikTok to see products built before they drop.</div>
+        <div class="product-footer">
+          <div class="product-price" style="color:var(--line)">&mdash;</div>
+          <a href="contact.html" class="add-btn">Get in Touch</a>
+        </div>
       </div>
     </div>
   </div>
-
-  <div class="product-card reveal delay-2" data-cat="utility">
-    <div class="product-img">
-      <div class="badge new">New</div>
-      <div class="product-img-ph"><span>Add product photo</span></div>
+  <footer class="site-footer">
+    <div class="footer-brand">
+      <div class="logo">Phil<span>roy</span></div>
+      <p>Premium handcrafted 550 paracord gear, made by hand in North Ipswich, Queensland. Ships Australia wide.</p>
     </div>
-    <div class="product-body">
-      <div class="product-cat">Utility</div>
-      <div class="product-name">Grab Handle</div>
-      <div class="product-desc">Heavy duty woven paracord grab handle. Built for utes, 4WDs, trailers and hard work environments. Stronger than rope, won't rot or snap. Contact us for custom lengths and colour options.</div>
-      <div class="product-footer">
-        <div class="product-price">$TBA</div>
-        <button class="add-btn snipcart-add-item"
-          data-item-id="grab-handle"
-          data-item-price="29.00"
-          data-item-url="/products.json"
-          data-item-name="Grab Handle"
-          data-item-description="Heavy duty woven paracord grab handle."
-          onclick="showToast('Added to cart!')">
-          Add to Cart
-        </button>
-      </div>
-    </div>
+    <div class="footer-col"><h4>Shop</h4><a href="shop.html">All Products</a><a href="shop.html">Bracelets</a><a href="shop.html">Grab Handles</a></div>
+    <div class="footer-col"><h4>Info</h4><a href="about.html">About</a><a href="contact.html">Contact</a></div>
+  </footer>
+  <div class="footer-bottom">
+    <span>ABN 13 305 181 990 &middot; Sole Trader &middot; North Ipswich QLD</span>
+    <span>&copy; 2026 Philroy. All rights reserved.</span>
   </div>
-
-  <div class="product-card" style="cursor:default;background:var(--bg2)">
-    <div class="product-img" style="background:var(--bg)">
-      <div class="product-img-ph"><span style="color:var(--line)">More dropping soon</span></div>
-    </div>
-    <div class="product-body">
-      <div class="product-cat" style="color:var(--line)">Coming soon</div>
-      <div class="product-name" style="color:var(--muted)">More Products</div>
-      <div class="product-desc">New gear is always in progress. Follow on TikTok to see products built before they drop in the store. Got a custom request? Hit the contact page.</div>
-      <div class="product-footer">
-        <div class="product-price" style="color:var(--line)">—</div>
-        <a href="contact.html" class="add-btn">Get in Touch</a>
-      </div>
-    </div>
-  </div>
-
-</div>
-
-<!-- PAYPAL OPTION -->
-<div class="paypal-note reveal">
-  <div>
-    <svg width="80" height="20" viewBox="0 0 124 33" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-top:4px">
-      <path d="M16.8 5H9.5L4 28h5.5l1.3-6.5h4.2c5.7 0 9.8-3.2 10.7-8.8C26.5 7.8 22.8 5 16.8 5zm-.5 9.5c-.4 2.3-2.2 3.5-4.5 3.5h-2l1.2-6h2.2c2.2 0 3.5 1 3.1 2.5z" fill="#009CDE"/>
-      <path d="M34 5h-7.3L21.2 28h5.5l1.3-6.5h4.2c5.7 0 9.8-3.2 10.7-8.8C43.7 7.8 40 5 34 5zm-.5 9.5c-.4 2.3-2.2 3.5-4.5 3.5h-2l1.2-6h2.2c2.2 0 3.5 1 3.1 2.5z" fill="#003087"/>
-      <path d="M57 13h-5.5l-3.5 15H53l.7-3 1.5 3H61l-3.5-5.5 5-9.5zm-3 9l-1.5-5L50 22h4z" fill="#009CDE"/>
-    </svg>
-  </div>
-  <div class="paypal-note-text">
-    <h3>Prefer to pay with PayPal?</h3>
-    <p>Use the Stripe checkout above for card payments, or send payment directly via PayPal. Once paid, email your order details to <a href="mailto:hello@philroy.com.au" style="color:var(--accent)">hello@philroy.com.au</a> and we'll get it sorted.</p>
-    <div class="paypal-btn-wrap">
-      <!-- Replace YOUR_PAYPAL_ME_LINK with your actual PayPal.Me link -->
-      <a href="https://paypal.me/YOUR_PAYPAL_ME_LINK" target="_blank" rel="noopener" class="btn-primary" style="font-size:0.75rem">Pay via PayPal</a>
-    </div>
-  </div>
-</div>
-
-<footer class="site-footer">
-  <div class="footer-brand">
-    <div class="logo">Phil<span>roy</span></div>
-    <p>Premium handcrafted 550 paracord gear, made by hand in North Ipswich, Queensland. Ships Australia wide.</p>
-  </div>
-  <div class="footer-col">
-    <h4>Shop</h4>
-    <a href="shop.html">All Products</a>
-    <a href="shop.html#bracelets">Bracelets</a>
-    <a href="shop.html#handles">Grab Handles</a>
-  </div>
-  <div class="footer-col">
-    <h4>Info</h4>
-    <a href="about.html">About</a>
-    <a href="contact.html">Contact</a>
-    <a href="contact.html">Shipping Policy</a>
-  </div>
-</footer>
-<div class="footer-bottom">
-  <span>ABN 13 305 181 990 · Sole Trader · North Ipswich QLD</span>
-  <span>© 2026 Philroy. All rights reserved.</span>
-</div>
-
-<div class="toast"></div>
-
-<div id="snipcart" data-api-key="YOUR_SNIPCART_PUBLIC_KEY" hidden></div>
-<script async src="https://cdn.snipcart.com/themes/v3.3.3/default/snipcart.js"></script>
-<script src="js/main.js"></script>
-<script>
-function filterProducts(cat, btn) {
-  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  document.querySelectorAll('#shop-grid .product-card').forEach(card => {
-    const cardCat = card.dataset.cat;
-    if (cat === 'all' || cardCat === cat) {
-      card.style.display = '';
-    } else {
-      card.style.display = 'none';
-    }
-  });
-}
-</script>
+  <div class="toast"></div>
+  <script src="https://js.stripe.com/v3/"></script>
+  <script src="js/main.js"></script>
+  <script src="js/checkout.js"></script>
+  <script>
+    function filterProducts(cat,btn){document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('#shop-grid .product-card').forEach(c=>{c.style.display=(cat==='all'||c.dataset.cat===cat)?'':'none'});}
+  </script>
 </body>
 </html>
