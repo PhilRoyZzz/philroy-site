@@ -1,5 +1,5 @@
 /* ── PHILROY · checkout.js ── */
-const WORKER_URL = 'https://philroy-payments.21c50b65.workers.dev';
+const WORKER_URL = 'https://philroy-payments.haydos724.workers.dev';
 
 const PRODUCTS = {
   'survival-bracelet': { name: 'Survival Bracelet', price: 19.00 },
